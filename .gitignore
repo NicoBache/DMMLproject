@@ -214,5 +214,7 @@ __pycache__/
 
 
 #cartella dataset tropo grandi
-Dataset/
+#Dataset/
+
+catboost_info/
 
