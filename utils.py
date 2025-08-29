@@ -79,3 +79,6 @@ def feature_importance_all_models(X, y, numerical_features, categorical_features
 
         # Plot importances
         plot_feature_importances(model_inside, all_features, f"{name} {title_suffix}", top_n=top_n)
+        
+        
+        

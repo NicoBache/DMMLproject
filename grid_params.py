@@ -1,10 +1,10 @@
 
 # Random Forest
 rf_params = {
-    "classifier__n_estimators": [200, 400, 600],   # più alberi → più stabilità, ma più tempo
-    "classifier__max_depth": [None, 10, 20, 30],   # limite profondità
-    "classifier__min_samples_split": [2, 5, 10],   # split più restrittivi
-    "classifier__min_samples_leaf": [1, 2, 4]      # numero minimo di campioni per foglia
+    "classifier__n_estimators": [200, 400, 600],   # più alberi → più stabilità, ma più tempo   4
+    "classifier__max_depth": [None, 10, 20],   # limite profondità      1
+    "classifier__min_samples_split": [2, 5, 10],   # split più restrittivi  3
+    "classifier__min_samples_leaf": [1, 2, 4]      # numero minimo di campioni per foglia   2
 }
 
 # XGBoost
