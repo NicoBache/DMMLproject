@@ -24,6 +24,32 @@ cat_params = {
 }
 
 
+# Parameters for OHE pipeline
+
+rf_params_ohe = {
+    "classifier__n_estimators": [200, 400],   # taglia via 600
+    "classifier__max_depth": [None, 12],      # meno valori di profondità
+    "classifier__min_samples_split": [2, 5],  # due soli valori
+    "classifier__min_samples_leaf": [1, 2]    # idem
+}
+
+xgb_params_ohe = {
+    "classifier__n_estimators": [300, 600],   # due valori, non tre
+    "classifier__max_depth": [4, 6],          # tagliando 3 e 10
+    "classifier__learning_rate": [0.05, 0.1], # eviti l’1e-2 troppo lento
+    "classifier__subsample": [0.8, 1.0]       # due valori
+}
+
+cat_params_ohe = {
+    "classifier__iterations": [400, 600],     # via il 200
+    "classifier__depth": [6, 8],              # valori medi
+    "classifier__learning_rate": [0.05, 0.1], # due valori
+    "classifier__l2_leaf_reg": [3, 5]         # due valori
+}
+
+
+
+
 
 """
 rf_params = {

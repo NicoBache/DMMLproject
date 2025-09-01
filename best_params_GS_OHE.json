@@ -1,0 +1,20 @@
+{
+  "RandomForest_OHE": {
+    "classifier__max_depth": null,
+    "classifier__min_samples_leaf": 1,
+    "classifier__min_samples_split": 5,
+    "classifier__n_estimators": 400
+  },
+  "XGBoost_OHE": {
+    "classifier__learning_rate": 0.1,
+    "classifier__max_depth": 6,
+    "classifier__n_estimators": 600,
+    "classifier__subsample": 0.8
+  },
+  "CatBoost_OHE": {
+    "classifier__depth": 6,
+    "classifier__iterations": 600,
+    "classifier__l2_leaf_reg": 3,
+    "classifier__learning_rate": 0.1
+  }
+}
