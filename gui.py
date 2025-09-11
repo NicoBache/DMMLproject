@@ -97,7 +97,7 @@ input_df = pd.DataFrame([input_dict])
 # 3) Predict — the pipeline preprocessor will:
 #    - impute numerics (median) and scale them,
 #    - impute categoricals (most_frequent),
-#    - encode categoricals with OrdinalEncoder (unknowns -> -1),
+#    - encode categoricals with OrdinalEncoder,
 #    then pass the transformed features to the classifier.
 # -------------------------------
 if st.button("Predict risk"):
