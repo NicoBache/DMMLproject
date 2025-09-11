@@ -8,7 +8,7 @@ class CustomPreprocessor(BaseEstimator, TransformerMixin):
         self.numerical_features = numerical_features
         self.categorical_features = categorical_features
         
-        # definisco i transformer standard sklearn
+        # define transformers
         self.num_imputer = SimpleImputer(strategy="median")
         self.scaler = StandardScaler()
         self.cat_imputer = SimpleImputer(strategy="most_frequent")
@@ -17,12 +17,12 @@ class CustomPreprocessor(BaseEstimator, TransformerMixin):
         )
         
     def fit(self, X, y=None):
-        # fit numeriche
+        # fit numerical features
         self.num_imputer.fit(X[self.numerical_features])
         X_num = self.num_imputer.transform(X[self.numerical_features])
         self.scaler.fit(X_num)
-        
-        # fit categoriche
+
+        # fit categorical features
         X_cat = self.cat_imputer.fit_transform(X[self.categorical_features])
         self.encoder.fit(X_cat)
         
@@ -30,17 +30,17 @@ class CustomPreprocessor(BaseEstimator, TransformerMixin):
     
     def transform(self, X):
         X = X.copy()
-        
-        # trasforma numeriche
+
+        # transform numerical features
         X_num = self.num_imputer.transform(X[self.numerical_features])
         X_num = self.scaler.transform(X_num)
         df_num = pd.DataFrame(X_num, columns=self.numerical_features, index=X.index)
-        
-        # trasforma categoriche
+
+        # transform categorical features
         X_cat = self.cat_imputer.transform(X[self.categorical_features])
         X_cat = self.encoder.transform(X_cat)
         df_cat = pd.DataFrame(X_cat, columns=self.categorical_features, index=X.index)
         
-        # concatena in un unico DataFrame
+        # concat in a single DataFrame
         X_out = pd.concat([df_num, df_cat], axis=1)
         return X_out

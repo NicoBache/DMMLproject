@@ -1,49 +1,37 @@
-
-# Random Forest
-rf_params = {
-    "classifier__n_estimators": [200, 400, 600],   # più alberi → più stabilità, ma più tempo   4
-    "classifier__max_depth": [None, 10, 20],   # limite profondità      1
-    "classifier__min_samples_split": [2, 5, 10],   # split più restrittivi  3
-    "classifier__min_samples_leaf": [1, 2, 4]      # numero minimo di campioni per foglia   2
-}
+# Parameters for the first pipeline
 
 # XGBoost
 xgb_params = {
-    "classifier__n_estimators": [200, 400, 600],   # numero di boosting rounds
-    "classifier__max_depth": [3, 5, 7, 10],        # profondità degli alberi
-    "classifier__learning_rate": [0.01, 0.05, 0.1],# tasso di apprendimento
-    "classifier__subsample": [0.6, 0.8, 1.0]       # frazione di campioni per boosting round
+    "classifier__n_estimators": [200, 400, 600],   
+    "classifier__max_depth": [3, 5, 7, 10],        
+    "classifier__learning_rate": [0.01, 0.05, 0.1],
+    "classifier__subsample": [0.6, 0.8, 1.0]       
 }
 
 # CatBoost
 cat_params = {
-    "classifier__iterations": [200, 400, 600],     # numero di boosting iterations
-    "classifier__depth": [4, 6, 8, 10],            # profondità degli alberi
-    "classifier__learning_rate": [0.01, 0.05, 0.1],# tasso di apprendimento
-    "classifier__l2_leaf_reg": [1, 3, 5, 7]        # regolarizzazione L2
+    "classifier__iterations": [200, 400, 600],     
+    "classifier__depth": [4, 6, 8, 10],            
+    "classifier__learning_rate": [0.01, 0.05, 0.1],
+    "classifier__l2_leaf_reg": [1, 3, 5, 7]        
 }
 
 
-# Parameters for OHE pipeline
+#=================================================================
 
-rf_params_ohe = {
-    "classifier__n_estimators": [200, 400],   # taglia via 600
-    "classifier__max_depth": [None, 12],      # meno valori di profondità
-    "classifier__min_samples_split": [2, 5],  # due soli valori
-    "classifier__min_samples_leaf": [1, 2]    # idem
-}
+# Parameters for the second pipeline
 
 xgb_params_ohe = {
-    "classifier__n_estimators": [300, 600],   # due valori, non tre
-    "classifier__max_depth": [4, 6],          # tagliando 3 e 10
-    "classifier__learning_rate": [0.05, 0.1], # eviti l’1e-2 troppo lento
-    "classifier__subsample": [0.8, 1.0]       # due valori
+    "classifier__n_estimators": [300, 600],   
+    "classifier__max_depth": [4, 6],          
+    "classifier__learning_rate": [0.05, 0.1], 
+    "classifier__subsample": [0.8, 1.0]       
 }
 
 cat_params_ohe = {
-    "classifier__iterations": [400, 600],     # via il 200
-    "classifier__depth": [6, 8],              # valori medi
-    "classifier__learning_rate": [0.05, 0.1], # due valori
-    "classifier__l2_leaf_reg": [3, 5]         # due valori
+    "classifier__iterations": [400, 600],     
+    "classifier__depth": [6, 8],              
+    "classifier__learning_rate": [0.05, 0.1], 
+    "classifier__l2_leaf_reg": [3, 5]         
 }
 
