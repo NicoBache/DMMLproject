@@ -1,5 +1,8 @@
-# run with: 
+
+#===============================
+# Run with: 
 # streamlit run gui.py
+#===============================
 
 import streamlit as st
 import joblib
@@ -14,10 +17,10 @@ pipeline = joblib.load("Models/best_pipeline.joblib")
 st.title("Credit Risk Prediction")
 
 # -------------------------------
-# Inputs – keep labels identical to training CSV
+# Inputs 
 # -------------------------------
 
-# CATEGORICALS: use the exact set seen in training
+# For categorical features use the exact set seen in training
 person_gender = st.selectbox("Gender", ["female", "male"])
 
 person_education = st.selectbox(
@@ -94,21 +97,16 @@ input_dict["loan_int_rate_bin"] = pd.cut(
 input_df = pd.DataFrame([input_dict])
 
 # -------------------------------
-# 3) Predict — the pipeline preprocessor will:
-#    - impute numerics (median) and scale them,
-#    - impute categoricals (most_frequent),
-#    - encode categoricals with OrdinalEncoder,
-#    then pass the transformed features to the classifier.
+#    Predict risk
 # -------------------------------
 if st.button("Predict risk"):
-    # Predicted class: 1 = Default, 0 = No Default
+    # Predicted class
     pred = pipeline.predict(input_df)[0]
 
-    # Predicted probability for the positive class (Default=1)
+    # Predicted probability for the positive class
     if hasattr(pipeline, "predict_proba"):
         proba = pipeline.predict_proba(input_df)[0][1]
     else:
-        # Fallback to decision_function normalized in [0,1] if needed
         scores = pipeline.decision_function(input_df)
         proba = (scores - scores.min()) / (scores.max() - scores.min() + 1e-9)
         proba = float(proba[0])
